@@ -3,21 +3,18 @@ FROM node:16
 # Create app directory
 WORKDIR /usr/src/app
 
+#adding all frontend files
 ADD ./client ./ 
 
-# Install app dependencies
+#grabbing dependencies files and backend 
 COPY /server/package*.json ./
 COPY /server/app.js ./
 COPY /server/dbService.js ./
 COPY /server/.env ./
 
-
+# Install app dependencies
 RUN npm install
-# If you are building your code for production
-# RUN npm ci --only=production
 
-# Bundle app source
-#COPY . .
 
 EXPOSE 5000
 CMD [ "node", "app.js" ]
